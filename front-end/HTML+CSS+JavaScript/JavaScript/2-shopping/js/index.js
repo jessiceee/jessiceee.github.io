@@ -1,29 +1,3 @@
-// const sliderData = [
-//   { url: "../upload/focus1.png" },
-//   { url: "../upload/recom_03.jpg" },
-//   { url: "../upload/q.jpg" },
-//   { url: "../upload/q1.jpg" },
-// ];
-
-// const slider = document.querySelector(".focus");
-
-// let i = 0; // 信号量 控制图片的张数
-
-// //开启定时器
-// setInterval(function () {
-//   i++;
-//   if (i >= sliderData.length) {
-//     i = 0;
-//   }
-//   slider.style.backgroundImage.src = sliderData[i].url;
-
-//   document.querySelector(".focus .li-active").classList.remove("li-active");
-
-//   document
-//     .querySelector(`.focus ul li:nth-child(${i + 1})`)
-//     .classList.add("li-active");
-// }, 1000);
-
 const sliderData = [
   { url: "./upload/focus1.png" },
   { url: "./upload/focus2.jpg" },
@@ -32,22 +6,36 @@ const sliderData = [
   { url: "./upload/focus2.jpg" },
 ];
 
+// console.log(sliderData[0].id);
+
 let focus = document.querySelector(".focus img");
 let slider = document.querySelector(".focus ul ");
 
 // console.log(focus.src)
 
-let i = 0; // 信号量 控制图片的张数
+slider.addEventListener("click", function (e) {
+  // console.log(e.target);
+  if (e.target.tagName === "LI") {
+    document.querySelector(".focus .li-active").classList.remove("li-active");
+    e.target.classList.add("li-active");
+
+    // console.log(e.target.dataset.id);
+    const j = +e.target.dataset.id;
+    focus.src = sliderData[j].url;
+    clearInterval(timer);
+  }
+});
+
+// let i = 0; // 信号量 控制图片的张数
 
 //切换图片
 function toggle() {
+  let i = +document.querySelector(".focus .li-active").dataset.id;
   i++;
   if (i >= sliderData.length) {
     i = 0;
   }
 
-  // console.log(focus.style.background.url)
-  // console.log(sliderData[i].url)
   focus.src = sliderData[i].url;
 
   document.querySelector(".focus .li-active").classList.remove("li-active");
@@ -57,6 +45,7 @@ function toggle() {
     .classList.add("li-active");
 }
 
+//定时器
 let timer = setInterval(toggle, 1800);
 
 //鼠标停留，停止更换
