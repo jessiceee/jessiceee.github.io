@@ -203,3 +203,22 @@
 .bb{
     border-bottom: 1px solid #ccc;
 }
+.backtop{
+    display: none;
+    width: 50px;
+    left: 50%;
+    margin: 0 0 0 610px;
+    position: fixed;
+    bottom: 60px;
+    z-index: 100;
+}
+.backtop a{
+    height: 50px;
+    width: 50px;
+    background: url(../images/bg2.png) 0 -600px no-repeat;
+    opacity: 0.35;
+    overflow: hidden;
+    display: block;
+    cursor: pointer ;
+    float: right;
+}

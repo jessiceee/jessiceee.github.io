@@ -56,3 +56,20 @@ focus.addEventListener("mouseenter", function () {
 focus.addEventListener("mouseleave", function () {
   timer = setInterval(toggle, 2000);
 });
+
+let backtop = document.querySelector(".backtop");
+//页面滚动事件
+window.addEventListener("scroll", function () {
+  //页面检测滚动距离
+  let num = this.document.documentElement.scrollTop;
+  if (num >= 350) {
+    backtop.style.display = "block";
+  } else {
+    backtop.style.display = "none";
+  }
+});
+
+//点击返回顶部
+backtop.children[0].addEventListener("click", function () {
+  document.documentElement.scrollTop = 0;
+});
